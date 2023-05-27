@@ -1,0 +1,8 @@
+.DS_Store
+server/
+etc/
+!server/.keep
+!etc/.keep
+TODO.md
+assets
+.env 
