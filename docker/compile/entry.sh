@@ -81,7 +81,6 @@ sed -i -e "/LogsDatabase.Info               =/ s/= .*/= \"$(escape $DB_CONTAINER
 
 sed -i -e "/GameType =/ s/= .*/= $(escape $GAME_TYPE)/" $CONFIG_PATH/mangosd.conf
 sed -i -e "/RealmZone =/ s/= .*/= $(escape $REALM_ZONE)/" $CONFIG_PATH/mangosd.conf
-sed -i -e "/Motd =/ s/= .*/= $(escape $MOTD_MSG)/" $CONFIG_PATH/mangosd.conf
 
 sed -i -e "/Ra.Enable =/ s/= .*/= $(escape $RA_ENABLE)/" $CONFIG_PATH/mangosd.conf
 sed -i -e "/AHBot.Enable  =/ s/= .*/= $(escape $AH_ENABLE)/" $CONFIG_PATH/mangosd.conf
