@@ -31,8 +31,6 @@ services:
         DOCKER_BUILDKIT: 1
     <<: *vmangos-shared-conf
     restart: "no"
-    profiles:
-      - compile
 
   mangosd:
     image: vmangos:mangosd
@@ -66,8 +64,8 @@ services:
     restart: "no"
     depends_on:
       - mariadb
-    profiles:
-      - dev
+    env_file:
+      - .env
 
   realmd:
     image: vmangos:realmd
