@@ -51,3 +51,14 @@ mysql -u $MYSQL_USERNAME -p$MYSQL_PASSWORD $REALM_DB_NAME -e "INSERT INTO accoun
 
 echo "Adding realm"
 mysql -u $MYSQL_USERNAME -p$MYSQL_PASSWORD $REALM_DB_NAME -e "INSERT INTO realmlist (name, address, port, icon, realmflags, timezone, allowedSecurityLevel, population, gamebuild_min, gamebuild_max, realmbuilds) VALUES ('$REALM_NAME', '$REALM_ADRESS', '$REALM_PORT', '$REALM_ICON', '$REALM_FLAG', '$REALM_TIMEZONE', '$REALM_SECURITY', '$REALM_POP', '$REALM_GAMEBUILD_MIN', '$REALM_GAMEBUILD_MAX', '$REALM_BUILD');"
+
+echo "Creating CMS Database"
+mysql -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -e "CREATE DATABASE $CMS_DB;"
+
+echo "Creating CMS User"
+mysql -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -e "create user '$CMS_DB_USER'@'$SERVER_DB_USERIP' identified by '$CMS_DB_PWD';"
+echo "Assigning CMS User Rights"
+mysql -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -e "grant all privileges on *.* to '$CMS_DB_USER'@'$SERVER_DB_USERIP';"
+mysql -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -e "GRANT SELECT, EXECUTE, SHOW VIEW, ALTER, ALTER ROUTINE, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, CREATE VIEW, DELETE, DROP, EVENT, INDEX, INSERT, REFERENCES, TRIGGER, UPDATE, LOCK TABLES  ON $CMS_DB.* TO '$CMS_DB_USER'@'$SERVER_DB_USERIP';"
+
+mysql -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -e  "flush privileges;"

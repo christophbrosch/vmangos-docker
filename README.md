@@ -2,7 +2,7 @@
 
 Welcome to the Dockerized vMangos repository! Here you will find a convenient and straightforward way to set up and run vMangos, the open-source MMORPG server emulator, using Docker.
 
-vMangos is a powerful emulator that allows you to create your own private World of Warcraft server. It supports various patches of World of Warcraft Vanilla (1.3 - 1.12.1) and provides the defacto best experience for players. By containerizing vMangos with Docker, we aim to simplify the setup process and make it easier for developers and enthusiasts to get started with running their own private WoW server for local play.
+vMangos is a powerful emulator that allows you to create your own private World of Warcraft server. It supports various patches of World of Warcraft Vanilla (1.2 - 1.12) and provides the defacto best experience for players. By containerizing vMangos with Docker, we aim to simplify the setup process and make it easier for developers and enthusiasts to get started with running their own private WoW server for local play.
 
 ## Features
 
@@ -46,4 +46,4 @@ This repository is licensed under the MIT License. You are free to use, modify, 
 
 We would like to express our gratitude to the vMangos development team for their outstanding work on the original vMangos project, which has made this Dockerized version possible.
 
-We would also thank the authors of https://github.com/diff3/vMangos-docker for providing a base we built up upon.
+We would also like to thank the authors of https://github.com/diff3/vMangos-docker for providing a base, which we built up upon.

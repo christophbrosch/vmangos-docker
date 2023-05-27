@@ -81,17 +81,19 @@ services:
     image: vmangos:web
     container_name: vmangos-web
     build:
-      context: docker/web
+      context: .
+      dockerfile: docker/web/Dockerfile
       <<: *build-shared-conf
     ports: 
       - "8000:80"
     working_dir: /var/www/html
-    volumes:
-      - ./web:/var/www/html
-      - ./docker/web/sites-enabled:/etc/apache2/sites-enabled
-      - ./docker/web/php.ini:/usr/local/etc/php/conf.d/extra-php-config.ini
     depends_on:
+      - redis
       - mariadb
+
+  redis:
+    image: redis:latest
+    container_name: vmangos-redis
 
 networks:
   default:

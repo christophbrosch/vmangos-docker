@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:7.4-apache
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -8,7 +8,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     git \
     nano \
     unzip \
-    zip 
+    zip \
+    libmariadb-dev-compat \
+    libmariadb-dev
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
@@ -18,7 +20,9 @@ RUN install-php-extensions \
     mysqli \
     soap \
     zip \
-    gmp
+    gmp \
+    redis \
+    exif 
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -34,12 +38,9 @@ RUN mkdir -p /home/www-data && chown www-data:www-data /home/www-data \
 # Enable apache modules
 RUN a2enmod rewrite
 
-# Set working directory
-WORKDIR /var/www/html
-
-USER www-data
-
 # Copy source files
-COPY --chown=www-data:www-data . /var/www/html
+COPY --chown=www-data:www-data ./web /var/www/html
+
+RUN composer install
 
 USER root
