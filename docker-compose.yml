@@ -77,20 +77,6 @@ services:
       - "3724:3724"
     <<: *vmangos-shared-conf
 
-  web:
-    image: vmangos:web
-    container_name: vmangos-web
-    build:
-      context: .
-      dockerfile: docker/web/Dockerfile
-      <<: *build-shared-conf
-    ports: 
-      - "8000:80"
-    working_dir: /var/www/html
-    depends_on:
-      - redis
-      - mariadb
-
   redis:
     image: redis:latest
     container_name: vmangos-redis
